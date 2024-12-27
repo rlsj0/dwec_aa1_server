@@ -1,15 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <title>Document</title>
 </head>
+
 <body>
   <main>
+    <h1></h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Sitio</th>
+          <th scope="col">User</th>
+          <th scope="col">Created at</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr>
+          <th scope="row">Facebook</th>
+          <td>john-johnson</td>
+          <td>20/12/2024</td>
+          <td>o o o</td>
+        </tr>
+      </tbody>
+    </table>
     <ul></ul>
   </main>
+
+  <!--
   <script>
     let drawData = (data) => {
       data.forEach(category => {
@@ -25,5 +50,7 @@
       .then(res => res.json())
       .then(data => drawData(data))
   </script>
+-->
 </body>
+
 </html>
