@@ -13,31 +13,66 @@
 <body>
   <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-      <a class="d-flex align-items-center link-body-emphasis text-decoration-none" href="/">
+      <a class="d-flex align-items-center link-body-emphasis text-decoration-none pt-2 ps-2" href="/">
         <span class="fs-4">Pass saver</span>
       </a>
     </div>
   </header>
-  <main>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">Sitio</th>
-          <th scope="col">User</th>
-          <th scope="col">Created at</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        <tr>
-          <th scope="row">Facebook</th>
-          <td>john-johnson</td>
-          <td>20/12/2024</td>
-          <td>o o o</td>
-        </tr>
-      </tbody>
-    </table>
-    <ul></ul>
+  <main class="container">
+    <div class="container">
+      <div class="container text-center">
+        <div class="row">
+          <button class="col col-md-auto p-2">Add categorie
+          </button>
+          <button class="col col-md-auto p-2">Add site
+          </button>
+        </div>
+      </div>
+      <div class="container mt-4">
+        <div class="row text-center justify-content-between">
+          <div class="col-3">
+            <table class="table table-bordered col-4">
+              <thead>
+                <tr>
+                  <th scope="col">Categories</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <tr>
+                  <th scope="row">Example 1</th>
+                </tr>
+                <tr>
+                  <th scope="row">Example 2</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-8">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Sitio</th>
+                  <th scope="col">User</th>
+                  <th scope="col">Created at</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <tr>
+                  <th scope="row">Facebook</th>
+                  <td>john-johnson</td>
+                  <td>20/12/2024</td>
+                  <td>
+                    <!-- TODO: Add here three buttons with a svg inside each one-->
+                    o o o
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!--
