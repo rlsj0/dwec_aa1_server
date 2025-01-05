@@ -38,9 +38,7 @@ function addCategory() {
         .catch(() => console.log("Error"));
 
     // Reload the DOM
-    fetch("http://localhost:3000/categories")
-        .then((res) => res.json())
-        .then((data) => drawData(data));
+    reloadTable();
 }
 
 // Disable/enable button to add category when empty/filled
@@ -70,7 +68,21 @@ function deleteCategory(categoryID) {
         .then((res) => {
             if (!res.ok) {
                 throw new Error(`${res.status}`);
+            } else {
+                reloadTable();
             }
         })
         .catch((error) => console.log("Not deleted: " + error));
+}
+
+function cleanCategoryTable() {
+    let table = document.getElementById("category-table");
+    table.innerHTML = "";
+}
+
+function reloadTable() {
+    cleanCategoryTable();
+    fetch("http://localhost:3000/categories")
+        .then((res) => res.json())
+        .then((data) => drawData(data));
 }
