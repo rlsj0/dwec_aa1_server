@@ -12,10 +12,15 @@ let drawData = (data) => {
         tableh.setAttribute("scope", "row");
         let category_button = document.createElement("button");
         category_button.setAttribute("class", "btn");
-
-        // child.innerText = JSON.stringify(category)
         category_button.innerText = category.name;
+        let deleteButton = document.createElement("button");
+        deleteButton.setAttribute("class", "btn btn-danger");
+        let deleteFunction = "deleteCategory(" + category["id"] + ")";
+        deleteButton.setAttribute("onClick", deleteFunction);
+        deleteButton.innerText = "x";
+
         tableh.appendChild(category_button);
+        tableh.appendChild(deleteButton);
         tablerow.appendChild(tableh);
         parent.appendChild(tablerow);
     });
@@ -38,9 +43,7 @@ function addCategory() {
         .catch(() => console.log("Error"));
 
     // Reload the DOM
-    fetch("http://localhost:3000/categories")
-        .then((res) => res.json())
-        .then((data) => drawData(data));
+    reloadTable();
 }
 
 // Disable/enable button to add category when empty/filled
@@ -52,4 +55,39 @@ function checkCategorySubmit() {
     } else {
         document.forms["category"]["addCategoryBtn"].disabled = true;
     }
+}
+
+function deleteCategory(categoryID) {
+    let categoryUrl = "http://localhost:3000/categories/" + categoryID;
+
+    // TODO: error handling (the backend fails when trying to delete
+    // a category with a non-existing id).
+
+    fetch(categoryUrl, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json",
+        },
+    })
+        // As the possible error is not rejected by fetch, I have to check it manually
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(`${res.status}`);
+            } else {
+                reloadTable();
+            }
+        })
+        .catch((error) => console.log("Not deleted: " + error));
+}
+
+function cleanCategoryTable() {
+    let table = document.getElementById("category-table");
+    table.innerHTML = "";
+}
+
+function reloadTable() {
+    cleanCategoryTable();
+    fetch("http://localhost:3000/categories")
+        .then((res) => res.json())
+        .then((data) => drawData(data));
 }
