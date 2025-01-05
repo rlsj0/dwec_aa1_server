@@ -12,10 +12,15 @@ let drawData = (data) => {
         tableh.setAttribute("scope", "row");
         let category_button = document.createElement("button");
         category_button.setAttribute("class", "btn");
-
-        // child.innerText = JSON.stringify(category)
         category_button.innerText = category.name;
+        let deleteButton = document.createElement("button");
+        deleteButton.setAttribute("class", "btn btn-danger");
+        let deleteFunction = "deleteCategory(" + category["id"] + ")";
+        deleteButton.setAttribute("onClick", deleteFunction);
+        deleteButton.innerText = "x";
+
         tableh.appendChild(category_button);
+        tableh.appendChild(deleteButton);
         tablerow.appendChild(tableh);
         parent.appendChild(tablerow);
     });
