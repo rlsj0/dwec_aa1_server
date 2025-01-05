@@ -37,3 +37,14 @@ function addCategory(category_name) {
         .then((json) => console.log(json))
         .catch(() => console.log("Error"));
 }
+
+// Disable/enable button to add category when empty/filled
+// The event listener is in the index.html because it
+// interfered with the bootstrap javascript
+function checkCategorySubmit() {
+    if (document.forms["category"]["category-name"].value != "") {
+        document.forms["category"]["addCategoryBtn"].disabled = false;
+    } else {
+        document.forms["category"]["addCategoryBtn"].disabled = true;
+    }
+}
