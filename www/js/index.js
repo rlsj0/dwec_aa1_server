@@ -91,3 +91,75 @@ function reloadTable() {
         .then((res) => res.json())
         .then((data) => drawData(data));
 }
+
+function fetchSites(categoryID) {
+    categoryUrl = "http://localhost:3000/categories/" + categoryID;
+    fetch(categoryUrl)
+        .then((res) => res.json())
+        .then((data) => drawSites(data));
+}
+
+function drawSites(sitesData) {
+    sitesArray = sitesData["sites"];
+    sitesArray.forEach((site) => {
+        // Create tr
+        let parent = document.getElementById("sites-table");
+        let siteRow = document.createElement("tr");
+        // Create site th
+        let siteColumn = document.createElement("th");
+        siteColumn.setAttribute("scope", "row");
+        siteColumn.innerText = site["name"];
+        // Create user td
+        let userColumn = document.createElement("td");
+        userColumn.innerText = site["user"];
+        // Create date td
+        let dateColumn = document.createElement("td");
+        // Get date: first 10 digits, or until T
+        let rawDate = site["updatedAt"];
+        dateText = rawDate.slice(0, 9);
+        dateColumn.innerText = dateText;
+        // Create actions td
+        let actionsColumn = document.createElement("td");
+        // Create link to go
+        let link = document.createElement("a");
+        link.setAttribute("class", "btn btn-primary pt-1 pb-1 mg-1");
+        link.setAttribute("href", site["url"]);
+        link.setAttribute("target", "_blank");
+        link.innerText = "Go";
+        // Create button to del
+        let deleteButton = document.createElement("button");
+        deleteButton.setAttribute("class", "btn btn-danger p-1 pb-1 mg-1");
+        deleteButton.setAttribute("onClick", "deleteSite(" + site["id"] + ")");
+        deleteButton.innerText = "X";
+        // Create link to edit
+        let editButton = document.createElement("button");
+        editButton.setAttribute("class", "btn btn-success pt-1 pb-1 mg-1");
+        editButton.innerText = "Ed";
+
+        //Append buttons
+        actionsColumn.appendChild(link);
+        actionsColumn.appendChild(deleteButton);
+        actionsColumn.appendChild(editButton);
+
+        // Append every column
+        siteRow.appendChild(siteColumn);
+        siteRow.appendChild(userColumn);
+        siteRow.appendChild(dateColumn);
+        siteRow.appendChild(actionsColumn);
+        parent.appendChild(siteRow);
+    });
+}
+
+//                <tr>
+//                  <th scope="row">Facebook</th>
+//                  <td>john-johnson</td>
+//                  <td>20/12/2024</td>
+//                  <td>
+//                    <button class="btn btn-primary pt-1 pb-1"> Go
+//                    </button>
+//                    <button class="btn btn-danger pt-1 pb-1"> Del
+//                    </button>
+//                    <button class="btn btn-success pt-1 pb-1"> Ed
+//                    </button>
+//                  </td>
+//                </tr>
