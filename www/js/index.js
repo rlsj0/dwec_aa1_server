@@ -9,9 +9,14 @@ let drawData = (data) => {
         let parent = document.getElementById("category-table");
         let tablerow = document.createElement("tr");
         let tableh = document.createElement("th");
+        let secondCol = document.createElement("td");
         tableh.setAttribute("scope", "row");
         let category_button = document.createElement("button");
         category_button.setAttribute("class", "btn");
+        category_button.setAttribute(
+            "onClick",
+            "fetchSites(" + category["id"] + ")",
+        );
         category_button.innerText = category.name;
         let deleteButton = document.createElement("button");
         deleteButton.setAttribute("class", "btn btn-danger");
@@ -20,8 +25,9 @@ let drawData = (data) => {
         deleteButton.innerText = "x";
 
         tableh.appendChild(category_button);
-        tableh.appendChild(deleteButton);
+        secondCol.appendChild(deleteButton);
         tablerow.appendChild(tableh);
+        tablerow.appendChild(secondCol);
         parent.appendChild(tablerow);
     });
 };
@@ -100,6 +106,7 @@ function fetchSites(categoryID) {
 }
 
 function drawSites(sitesData) {
+    document.getElementById("sites-table").innerHTML = "";
     sitesArray = sitesData["sites"];
     sitesArray.forEach((site) => {
         // Create tr
@@ -122,18 +129,24 @@ function drawSites(sitesData) {
         let actionsColumn = document.createElement("td");
         // Create link to go
         let link = document.createElement("a");
-        link.setAttribute("class", "btn btn-primary pt-1 pb-1 mg-1");
+        link.setAttribute("class", "btn btn-primary pt-1 pb-1 ps-2 pe-2 m-1");
         link.setAttribute("href", site["url"]);
         link.setAttribute("target", "_blank");
         link.innerText = "Go";
         // Create button to del
         let deleteButton = document.createElement("button");
-        deleteButton.setAttribute("class", "btn btn-danger p-1 pb-1 mg-1");
+        deleteButton.setAttribute(
+            "class",
+            "btn btn-danger pt-1 pb-1 ps-2 pe-2 m-1",
+        );
         deleteButton.setAttribute("onClick", "deleteSite(" + site["id"] + ")");
         deleteButton.innerText = "X";
         // Create link to edit
         let editButton = document.createElement("button");
-        editButton.setAttribute("class", "btn btn-success pt-1 pb-1 mg-1");
+        editButton.setAttribute(
+            "class",
+            "btn btn-success pt-1 pb-1 ps-2 pe-2 m-1",
+        );
         editButton.innerText = "Ed";
 
         //Append buttons
