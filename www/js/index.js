@@ -53,3 +53,24 @@ function checkCategorySubmit() {
         document.forms["category"]["addCategoryBtn"].disabled = true;
     }
 }
+
+function deleteCategory(categoryID) {
+    let categoryUrl = "http://localhost:3000/categories/" + categoryID;
+
+    // TODO: error handling (the backend fails when trying to delete
+    // a category with a non-existing id).
+
+    fetch(categoryUrl, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json",
+        },
+    })
+        // As the possible error is not rejected by fetch, I have to check it manually
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(`${res.status}`);
+            }
+        })
+        .catch((error) => console.log("Not deleted: " + error));
+}
