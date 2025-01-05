@@ -1,33 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let drawData = (data) => {
-        data.forEach((category) => {
-            let parent = document.getElementById("category-table");
-            let tablerow = document.createElement("tr");
-            let tableh = document.createElement("th");
-            tableh.setAttribute("scope", "row");
-            let category_button = document.createElement("button");
-            category_button.setAttribute("class", "btn");
-
-            // child.innerText = JSON.stringify(category)
-            category_button.innerText = category.name;
-            tableh.appendChild(category_button);
-            tablerow.appendChild(tableh);
-            parent.appendChild(tablerow);
-        });
-    };
-
     fetch("http://localhost:3000/categories")
         .then((res) => res.json())
         .then((data) => drawData(data));
 });
 
+let drawData = (data) => {
+    data.forEach((category) => {
+        let parent = document.getElementById("category-table");
+        let tablerow = document.createElement("tr");
+        let tableh = document.createElement("th");
+        tableh.setAttribute("scope", "row");
+        let category_button = document.createElement("button");
+        category_button.setAttribute("class", "btn");
+
+        // child.innerText = JSON.stringify(category)
+        category_button.innerText = category.name;
+        tableh.appendChild(category_button);
+        tablerow.appendChild(tableh);
+        parent.appendChild(tablerow);
+    });
+};
 // Remind: the fetch returns an array of objects
 
-function addCategory(category_name) {
+function addCategory() {
+    let categoryName = document.getElementById("category-name").value;
     fetch("http://localhost:3000/categories", {
         method: "POST",
         body: JSON.stringify({
-            "name": category_name,
+            "name": categoryName,
         }),
         headers: {
             "Content-type": "application/json",
@@ -36,6 +36,11 @@ function addCategory(category_name) {
         .then((res) => res.json())
         .then((json) => console.log(json))
         .catch(() => console.log("Error"));
+
+    // Reload the DOM
+    fetch("http://localhost:3000/categories")
+        .then((res) => res.json())
+        .then((data) => drawData(data));
 }
 
 // Disable/enable button to add category when empty/filled
