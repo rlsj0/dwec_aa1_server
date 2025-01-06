@@ -17,11 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     hidden.value = categoryID;
 });
 
+// Called from add-site.html
 function verifyForm() {
     if (
         urlInput.value != "" && userInput.value != "" &&
         passwordInput.value != ""
     ) {
         button.disabled = false;
+    } else {
+        button.disabled = true;
     }
 }
