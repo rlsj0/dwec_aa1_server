@@ -12,7 +12,7 @@ let drawData = (data) => {
         let secondCol = document.createElement("td");
         tableh.setAttribute("scope", "row");
         let category_button = document.createElement("button");
-        category_button.setAttribute("class", "btn");
+        category_button.setAttribute("class", "btn w-100");
         category_button.setAttribute(
             "onClick",
             "fetchSites(" + category["id"] + ")",
@@ -123,7 +123,7 @@ function drawSites(sitesData) {
         let dateColumn = document.createElement("td");
         // Get date: first 10 digits, or until T
         let rawDate = site["updatedAt"];
-        dateText = rawDate.slice(0, 9);
+        dateText = rawDate.slice(0, 10);
         dateColumn.innerText = dateText;
         // Create actions td
         let actionsColumn = document.createElement("td");
@@ -176,3 +176,8 @@ function drawSites(sitesData) {
 //                    </button>
 //                  </td>
 //                </tr>
+
+function changeAddSiteButton(categoryID) {
+    let button = document.getElementById("addSiteButton");
+    button.setAttribute("href", "add-site.html");
+}

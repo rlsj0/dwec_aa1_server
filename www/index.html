@@ -16,7 +16,7 @@
 <body>
   <header>
     <div class="d-flex flex-column flex-row align-items-center pb-3 mb-4 border-bottom">
-      <a class="d-flex align-items-center link-body-emphasis text-decoration-none pt-2 ps-2" href="/">
+      <a class="d-flex align-items-center link-body-emphasis text-decoration-none pt-2 ps-2" href="add-site.html">
         <span class="fs-4">Pass saver</span>
       </a>
     </div>
@@ -29,13 +29,14 @@
             data-bs-target="#exampleModal">
             Add category
           </button>
-          <button class="col col-auto p-2 border-0 border-start border-dark rounded-end">Add site
-          </button>
+          <a class="btn col col-auto p-2 border-0 border-dark rounded-end" id="addSiteButton">Add
+            site
+          </a>
         </div>
       </div>
       <div class="container mt-4">
-        <div class="row text-center justify-content-between">
-          <div class="col-3">
+        <div class="row text-center">
+          <div class="col-md-4">
             <table class="table table-borderless table-striped col-auto">
               <thead>
                 <tr>
@@ -54,7 +55,7 @@
               </tbody>
             </table>
           </div>
-          <div class="col-sm">
+          <div class="col-md-8">
             <table class="table table-bordered">
               <thead>
                 <tr>
