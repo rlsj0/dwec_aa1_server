@@ -1,4 +1,14 @@
+let urlInput;
+let userInput;
+let passwordInput;
+let button;
+
 document.addEventListener("DOMContentLoaded", () => {
+    // Declare variables
+    urlInput = document.getElementById("url-site");
+    userInput = document.getElementById("user-site");
+    passwordInput = document.getElementById("password-site");
+    button = document.getElementById("saveButton");
     // Hidden input: set value to category id
     const urlParameters = window.location.search;
     let params = new URLSearchParams(urlParameters);
@@ -7,4 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     hidden.value = categoryID;
 });
 
-// Add invisible input with the category id.
+function verifyForm() {
+    if (
+        urlInput.value != "" && userInput.value != "" &&
+        passwordInput.value != ""
+    ) {
+        button.disabled = false;
+    }
+}
