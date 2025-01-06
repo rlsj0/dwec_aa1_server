@@ -140,7 +140,10 @@ function drawSites(sitesData) {
             "class",
             "btn btn-danger pt-1 pb-1 ps-2 pe-2 m-1",
         );
-        deleteButton.setAttribute("onClick", "deleteSite(" + site["id"] + ")");
+        deleteButton.setAttribute(
+            "onClick",
+            "deleteSite(" + site["id"] + ", " + sitesData["id"] + ")",
+        );
         deleteButton.innerText = "X";
         // Create link to edit
         let editButton = document.createElement("button");
@@ -183,7 +186,7 @@ function changeAddSiteButton(categoryID) {
     button.setAttribute("href", "add-site.html?id=" + categoryID + "&");
 }
 
-function deleteSite(siteID) {
+function deleteSite(siteID, categoryID) {
     fetchUrl = "http://localhost:3000/sites/" + siteID;
     fetch(fetchUrl, {
         method: "DELETE",
@@ -192,10 +195,10 @@ function deleteSite(siteID) {
             if (!res.ok) {
                 throw new Error(`${res.status}`);
             } else {
-                reloadTable();
+                // Clean and reload
+                document.getElementById("sites-table").innerHTML = "";
+                fetchSites(categoryID);
             }
         })
         .catch((error) => console.log("Not deleted: " + error));
-
-    // Remember to reload the DOM (1) clean, (2) load again
 }
