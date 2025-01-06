@@ -182,3 +182,20 @@ function changeAddSiteButton(categoryID) {
     let button = document.getElementById("addSiteButton");
     button.setAttribute("href", "add-site.html?id=" + categoryID + "&");
 }
+
+function deleteSite(siteID) {
+    fetchUrl = "http://localhost:3000/sites/" + siteID;
+    fetch(fetchUrl, {
+        method: "DELETE",
+    })
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(`${res.status}`);
+            } else {
+                reloadTable();
+            }
+        })
+        .catch((error) => console.log("Not deleted: " + error));
+
+    // Remember to reload the DOM (1) clean, (2) load again
+}
