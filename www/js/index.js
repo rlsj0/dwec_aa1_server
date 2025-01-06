@@ -107,6 +107,7 @@ function fetchSites(categoryID) {
 
 function drawSites(sitesData) {
     document.getElementById("sites-table").innerHTML = "";
+    changeAddSiteButton(sitesData["id"]);
     sitesArray = sitesData["sites"];
     sitesArray.forEach((site) => {
         // Create tr
@@ -179,5 +180,5 @@ function drawSites(sitesData) {
 
 function changeAddSiteButton(categoryID) {
     let button = document.getElementById("addSiteButton");
-    button.setAttribute("href", "add-site.html");
+    button.setAttribute("href", "add-site.html?id=" + categoryID + "&");
 }
